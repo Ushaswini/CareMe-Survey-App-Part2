@@ -1,0 +1,80 @@
+﻿
+@section Scripts {
+    @Scripts.Render("~/bundles/Dashboard")
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label data-bind="value: result" />
+        </div>
+        <div class="form-group error-messages" data-bind="foreach: errors">
+            <p data-bind="text: $data" />
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <button type="submit" id="logout" class="btn btn-default pull-right">Logout</button>
+        <h3 >Enroll User</h3>
+        
+        <div class="col" style="float:right; margin:10px">
+            
+        </div>
+        <form data-bind="submit:AddUser">
+            <div class="form-row">
+                <div class="col" style="float:left; margin:10px">
+                    <input type="text" data-bind="value: userName" class="form-control" placeholder="User Name">
+                </div>
+                <div class="col" style="float:left; margin:10px">
+                    <input type="text" data-bind="value: userEmail" class="form-control" placeholder="Email">
+                </div>
+                <div class="col" style="float:left; margin:10px">
+                    <input type="password" data-bind="value: userPassword" class="form-control" placeholder="Password">
+                </div>
+                <div class="col" style="float:left; margin:10px">
+                    <select class="form-control" data-bind="options: studyGroups,
+                                                                        optionsCaption: 'Choose study group',
+                                                                        optionsText: 'StudyName',
+                                                                        optionsValue: 'StudyGroupId',
+                                                                        value: selectedStudyGroup"></select>
+                </div>
+                <div class="col" style="float:left; margin:10px">
+                    <button type="submit" class="btn btn-default">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-sm-12" style="float:left">
+        <h3>Publish Survey to Study Group</h3>
+        <div class="col" style="float:left; margin:10px">
+            <select class="form-control" data-bind="options: studyGroups,
+                                                                        optionsCaption: 'Choose study group',
+                                                                        optionsText: 'StudyName',
+                                                                        optionsValue: 'StudyGroupId',
+                                                                        value: selectedStudyGroupForSurvey"></select>
+        </div>
+        <button style="float:left; margin:10px;height:34px" id="presentSurvey">Publish Survey</button>
+    </div>
+    <div class="col-sm-12" style="float:left">
+        <h3>List surveys</h3>
+        <div class="col-sm-12" style="float:left">
+            <button style="float:left;margin-top:10px;height:34px;margin-bottom:10px" id="navigateToSurveyManager">Go to Survey Manager</button>
+        </div>
+        
+        <h3 style="margin-bottom:10px;margin:10px">List of users enrolled</h3>
+        <div class="col-sm-12" style="float:left;margin:10px">
+            
+            <table class="table table-hover table-bordered table-striped" id="usersTable">
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <!--<th>Study Group</th>-->
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+
+    </div>
+</div>
