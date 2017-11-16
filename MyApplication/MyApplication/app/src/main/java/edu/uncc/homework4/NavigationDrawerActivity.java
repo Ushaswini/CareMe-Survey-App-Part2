@@ -1,5 +1,7 @@
 package edu.uncc.homework4;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -119,6 +121,11 @@ public class NavigationDrawerActivity extends AppCompatActivity
                     .commit();
 
         } else if (id == R.id.nav_logout) {
+            SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("token", Context.MODE_PRIVATE);   //getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("token","");
+            //editor.putInt(getString(R.string.saved_high_score), newHighScore);
+            editor.commit();
             finish();
         }
 

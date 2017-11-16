@@ -89,6 +89,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
 
+        SharedPreferences sharedPref = this.getSharedPreferences("token",Context.MODE_PRIVATE);   //getPreferences(Context.MODE_PRIVATE);
+        //SharedPreferences.Editor editor = sharedPref.edit();
+        //editor.  .putString("token",access_token);
+        //editor.putInt(getString(R.string.saved_high_score), newHighScore);
+        //editor.commit();
+        access_token = sharedPref.getString("token","");
+        if (!access_token.equals("")) {
+            Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
+            intent.putExtra("access_token", access_token);
+            startActivity(intent);
+        }
+
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -439,11 +451,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     runOnUiThread(new Runnable() {
                         public void run() {
                             showProgress(false);
-                           // SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("token",Context.MODE_PRIVATE);   //getPreferences(Context.MODE_PRIVATE);
-                            //SharedPreferences.Editor editor = sharedPref.edit();
-                            //editor.putString("token",access_token);
+                            SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("token",Context.MODE_PRIVATE);   //getPreferences(Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("token",access_token);
                             //editor.putInt(getString(R.string.saved_high_score), newHighScore);
-                            //editor.commit();
+                            editor.commit();
                             Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
                             intent.putExtra("access_token", access_token);
                             startActivity(intent);
